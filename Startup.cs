@@ -72,7 +72,12 @@ namespace api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors();
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:8080");
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
